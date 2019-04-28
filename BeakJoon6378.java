@@ -4,30 +4,30 @@ import java.util.*;
 public class BeakJoon6378 
 {
     public static void main(String[] args) throws IOException, NumberFormatException
-	{
-		 Scanner scan = new Scanner(System.in);  //½ºÄ³³Ê °´Ã¼ ¼±¾ğ ¹× Á¤ÀÇ.
-         String str;  //Á¤¼ö °ªÀ» ÀÔ·Â¹ŞÀ» ¹®ÀÚ¿­ °´Ã¼ ¼±¾ğ
+    {
+             Scanner scan = new Scanner(System.in);  //ìŠ¤ìºë„ˆ ê°ì²´ ì„ ì–¸ ë° ì •ì˜.
+             String str;  //ì •ìˆ˜ ê°’ì„ ì…ë ¥ë°›ì„ ë¬¸ìì—´ ê°ì²´ ì„ ì–¸
 		 
-         while(!(str = scan.nextLine()).equals("0"))  //0À» ÀÔ·ÂÇÒ ¶§ ±îÁö ¹«ÇÑ ·çÇÁ µ¿ÀÛ.
-		 {
-             String[] strArr = str.split("");  //strÀ» ¹®ÀÚ´ÜÀ§·Î ºĞÇØÇÏ¿© String ¹è¿­¿¡ °¢°¢ ÀúÀå.
+             while(!(str = scan.nextLine()).equals("0"))  //0ì„ ì…ë ¥í•  ë•Œ ê¹Œì§€ ë¬´í•œ ë£¨í”„ ë™ì‘.
+	     {
+                 String[] strArr = str.split("");  //strì„ ë¬¸ìë‹¨ìœ„ë¡œ ë¶„í•´í•˜ì—¬ String ë°°ì—´ì— ê°ê° ì €ì¥.
 			 
-			 if(strArr.length == 1);  //ÀÔ·Â¹ŞÀº ¼ıÀÚ°¡ ÇÑ ÀÚ¸®ÀÎ °æ¿ì
-			 else  //±× ÀÌ»óÀÎ °æ¿ì
-			 {
-	             while(strArr.length != 1)  //ÇÑ ÀÚ¸® Á¤¼ö°¡ µÉ ¶§±îÁö ¹İº¹.
-				 {
-	    			 int value = 0;
+	         if(strArr.length == 1);  //ì…ë ¥ë°›ì€ ìˆ«ìê°€ í•œ ìë¦¬ì¸ ê²½ìš°
+		 else  //ê·¸ ì´ìƒì¸ ê²½ìš°
+	         {
+	             while(strArr.length != 1)  //í•œ ìë¦¬ ì •ìˆ˜ê°€ ë  ë•Œê¹Œì§€ ë°˜ë³µ.
+		     {
+	    	         int value = 0;
 	    			 
-					 for(int i = 0; i < strArr.length; i++)
-					     value += Integer.parseInt(strArr[i]);  //value °ªÀ» ´©Àû.
-					 strArr = String.valueOf(value).split("");  //value °ªÀ» ÇÑ ¼ıÀÚ¾¿ ºĞÇØÇÏ¿© String ¹è¿­¿¡ ÀúÀå.
-			     }
-			 }
-			
-			 if(strArr[0] != "0")
-				 System.out.println(strArr[0]);
-		} 
+                         for(int i = 0; i < strArr.length; i++)
+			     value += Integer.parseInt(strArr[i]);  //value ê°’ì„ ëˆ„ì .
+			 strArr = String.valueOf(value).split("");  //value ê°’ì„ í•œ ìˆ«ìì”© ë¶„í•´í•˜ì—¬ String ë°°ì—´ì— ì €ì¥.
+		     }
+	         }
+		
+	         if(strArr[0] != "0")
+                     System.out.println(strArr[0]);
+	     } 
         scan.close();
     }
 }

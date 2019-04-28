@@ -6,7 +6,7 @@ public class BeakJoon1402
 {
     public static void main(String[] args) throws IOException
     {
-		Scanner scan = new Scanner(System.in);
+	Scanner scan = new Scanner(System.in);
         ArrayList<Integer> arr = new ArrayList<Integer>();
         
         int testcase = scan.nextInt();
@@ -19,16 +19,16 @@ public class BeakJoon1402
         	int divisor = 2;
         	while(sourcevalue != 1)
         	{
-        		while(divisor <= sourcevalue)
+        	    while(divisor <= sourcevalue)
         	    {
         		  if(sourcevalue % divisor == 0)
         		  {
-        			  sourcevalue /= divisor;
-        			  arr.add((Integer)divisor);
+        	              sourcevalue /= divisor;
+        		      arr.add((Integer)divisor);
         		  }
         		  
         		  else
-        			  divisor++;
+        		      divisor++;
         	    }
         	}
         	

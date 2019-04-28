@@ -4,31 +4,31 @@ import java.util.Scanner;
 public class BeakJoon1120 
 {
     public static void main(String[] args) throws IOException
-	{
-		//º¯¼ö ¼±¾ğºÎ
+    {
+        //ë³€ìˆ˜ ì„ ì–¸ë¶€
     	String str1 = new String();
-		String str2 = new String();
-		Scanner scan = new Scanner(System.in);
-		//String °´Ã¼¿¡ ¹®ÀÚ¿­ ÀÔ·Â
-		str1 = scan.next();
-		str2 = scan.next();
+	String str2 = new String();
+	Scanner scan = new Scanner(System.in);
+	//String ê°ì²´ì— ë¬¸ìì—´ ì…ë ¥
+	str1 = scan.next();
+	str2 = scan.next();
         
-		int max_sameCount = 0; //String °´Ã¼ °£ ÃÖ´ë·Î °ãÄ¡´Â ¹®ÀÚÀÇ °¹¼ö
-		//¹®ÀÚ¿­ ºñ±³ ÄÚµå
-		for(int i = 0; i < str2.length() - str1.length() + 1; i++)
-		{
-			int sameCount = 0; //String °´Ã¼ °£ °ãÄ¡´Â ¹®ÀÚÀÇ °¹¼ö
-			String subStr = str2.substring(i, i + str1.length()); //str2ÀÇ ºÎºĞ¹®ÀÚ¿­
-			//str1°ú ºÎºĞ¹®ÀÚ¿­À» ºñ±³
-			for(int j = 0; j < subStr.length(); j++)
-				if(str1.charAt(j) == subStr.charAt(j))
-					sameCount++;
+	int max_sameCount = 0; //String ê°ì²´ ê°„ ìµœëŒ€ë¡œ ê²¹ì¹˜ëŠ” ë¬¸ìì˜ ê°¯ìˆ˜
+	//ë¬¸ìì—´ ë¹„êµ ì½”ë“œ
+	for(int i = 0; i < str2.length() - str1.length() + 1; i++)
+	{
+		int sameCount = 0; //String ê°ì²´ ê°„ ê²¹ì¹˜ëŠ” ë¬¸ìì˜ ê°¯ìˆ˜
+		String subStr = str2.substring(i, i + str1.length()); //str2ì˜ ë¶€ë¶„ë¬¸ìì—´
+		//str1ê³¼ ë¶€ë¶„ë¬¸ìì—´ì„ ë¹„êµ
+		for(int j = 0; j < subStr.length(); j++)
+		    if(str1.charAt(j) == subStr.charAt(j))
+			sameCount++;
 			
-			if(sameCount > max_sameCount)
-				max_sameCount = sameCount;
-		}
-		
-		System.out.println(str1.length() - max_sameCount);  //str1 ±æÀÌ¿¡¼­ ÃÖ´ë·Î °ãÄ¡´Â ¼ö¸¦ »« °ÍÀÌ Â÷ÀÕ°ª.
-		scan.close();
+		if(sameCount > max_sameCount)
+		    max_sameCount = sameCount;
 	}
+		
+	System.out.println(str1.length() - max_sameCount);  //str1 ê¸¸ì´ì—ì„œ ìµœëŒ€ë¡œ ê²¹ì¹˜ëŠ” ìˆ˜ë¥¼ ëº€ ê²ƒì´ ì°¨ì‡ê°’.
+	scan.close();
+    }
 }
