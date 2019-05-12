@@ -7,10 +7,10 @@ int main(int argc, char* argv[])
 
 	int tmp = 1;
 	for (int i = 0; i < numberofZero; i++)
-		tmp *= 10;
+	    tmp *= 10;
 	
 	int remainder;
-    remainder = priceofCandy % tmp;
+        remainder = priceofCandy % tmp;
 
 	if (remainder >= tmp / 2)
 		priceofCandy = priceofCandy + (tmp - remainder); 
