@@ -3,8 +3,8 @@
 
 void quickSort(int* array, int start, int end)
 {
-	if (start >= end)
-		return;
+    if (start >= end)
+	return;
 	
     int i = start + 1;
 	int j = end;
@@ -32,7 +32,7 @@ void quickSort(int* array, int start, int end)
 	}
 	
     quickSort(array, start, j - 1);
-	quickSort(array, j + 1, end);
+    quickSort(array, j + 1, end);
 }
 
 int main(int argc, char* argv[])
