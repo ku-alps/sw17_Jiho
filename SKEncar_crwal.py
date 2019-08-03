@@ -33,7 +33,7 @@ WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.XPATH, '//*[@
 time.sleep(0.5)
 
 # DB 커넥션
-conn = sqlite3.connect('./Database/SKEncar_carInfo.db', isolation_level = None)
+conn = sqlite3.connect('./Database/SKEncar_carInfo2.db', isolation_level = None)
 
 # 커서 바인딩
 cursor = conn.cursor()
@@ -46,7 +46,7 @@ with conn:
     # 크롤링 마지막 페이지 탐색
     soup = BeautifulSoup(browser.page_source, 'html.parser')
     crwal_last_page = 1
-
+    
     while (soup.select_one('div.part.page > span.next') != None):
         WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.part.page > span.next'))).click()
         time.sleep(2)
@@ -55,12 +55,11 @@ with conn:
 
     crwal_last_page = int(soup.select_one('div.part.page > span:nth-last-of-type(2) > a').string)
 
-
     # 시작 페이지부터 마지막 페이지까지 사진우대 부분 이름, 연식, 키로수, 연료, 가격 정보 추출
     crawl_cur_page = 1
-
+    browser.get('http://www.encar.com/dc/dc_carsearchlist.do?carType=kor#!%7B%22action%22%3A%22(And.Hidden.N._.(C.CarType.Y._.(C.Manufacturer.%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4._.(C.ModelGroup.EQ900._.Model.EQ900.))))%22%2C%22toggle%22%3A%7B%7D%2C%22layer%22%3A%22%22%2C%22sort%22%3A%22ModifiedDate%22%2C%22page%22%3A1%2C%22limit%22%3A20%7D')
+    
     while crawl_cur_page <= crwal_last_page:
-        browser.get('http://www.encar.com/dc/dc_carsearchlist.do?carType=kor#!%7B%22action%22%3A%22(And.Hidden.N._.(C.CarType.Y._.(C.Manufacturer.%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4._.(C.ModelGroup.EQ900._.Model.EQ900.))))%22%2C%22toggle%22%3A%7B%7D%2C%22layer%22%3A%22%22%2C%22sort%22%3A%22ModifiedDate%22%2C%22page%22%3A{}%2C%22limit%22%3A20%7D'.format(crawl_cur_page))
         soup = BeautifulSoup(browser.page_source, 'html.parser')
         
         # 데이터 추출(사진우대 부분)
@@ -77,16 +76,18 @@ with conn:
             # DB 저장
             cursor.execute("INSERT INTO car_info(page, name, year, kilo, fuel, location, price) VALUES(?,?,?,?,?,?,?)", (crawl_cur_page, name, year, kilo, fuel, location, price))
 
-
         # 기존 soup 객체 삭제
         del soup
 
         # 페이지 이동
         remainder = crawl_cur_page % 10
         if remainder != 0:
-            WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.part.page > span:nth-child({}) > a'.format(remainder + 2)))).click()
+            if not (crawl_cur_page >= 1) and (crawl_cur_page <= 10):
+                WebDriverWait(browser, 2.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.part.page > span:nth-child({}) > a'.format(remainder + 2)))).click()
+            else:
+                WebDriverWait(browser, 2.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.part.page > span:nth-child({}) > a'.format(remainder + 1)))).click()
         else:
-            WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.part.page > span.next'))).click()
+            WebDriverWait(browser, 2.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.part.page > span.next'))).click()
         
         crawl_cur_page += 1
         
