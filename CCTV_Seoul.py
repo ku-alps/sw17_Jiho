@@ -48,7 +48,7 @@ data_result['오차'] = np.abs(f1(data_result['인구수']) - data_result['소�
 plt.scatter(data_result['인구수'], data_result['소계'], c = data_result['오차'], s=50)
 plt.plot(fx, f1(fx), ls='dashed', lw=3, color='g')
 
-# 산점도에 대응되는 구 이름을 
+# 산점도에 대응되는 구 이름을 text로 추가
 for idx in range(0,25):
     plt.text(df_sort['인구수'][idx] * 1.02, df_sort['소계'][idx] * 0.98, df_sort.index[idx], fontsize = 15)
     
